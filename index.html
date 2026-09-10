@@ -10,6 +10,9 @@
     content="Santan kelapa dan kelapa parut segar berkualitas. Cocok untuk masakan keluarga, usaha kuliner, dan katering."
   />
 
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://api.qrserver.com https://wa.me; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://wa.me https://api.qrserver.com;" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -211,6 +214,14 @@
         </div>
         <span class="qris-label" style="color:var(--text)">Upload foto bukti bayar QRIS (testing)</span>
       </div>
+
+      <div class="cart-captcha" id="captchaSection">
+        <label class="upload-label">🧩 Puzzle Verifikasi</label>
+        <p style="font-size: 11px; margin: 4px 0 8px;" id="puzzleInstruction">Pilih gambar: ...</p>
+        <div class="puzzle-options" id="puzzleOptions"></div>
+        <input type="hidden" id="humanToken" />
+      </div>
+
       <div class="cart-payment" id="cartPayment">
         <div class="cart-payment-actions">
           <button class="btn btn-primary checkout-button" id="checkoutButton">Checkout WA</button>
