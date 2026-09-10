@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owner App | KelapaTuaBangCut</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    body { background: #f4f7f4; padding: 20px; }
+    .app-card { background: #fff; border-radius: 15px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 900px; margin: 0 auto; }
+    .app-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 25px; }
+    .stat-box { background: var(--primary); color: #fff; padding: 15px; border-radius: 10px; text-align: center; }
+    .stat-box span { font-size: 11px; opacity: 0.9; display: block; margin-bottom: 5px; }
+    .stat-box strong { font-size: 18px; }
+  </style>
+</head>
+<body>
+  <div class="app-card">
+    <div class="app-header">
+      <h2>🥥 Owner App</h2>
+      <button class="btn btn-outline" onclick="logout()">Logout</button>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-box"><span>Omzet Hari Ini</span><strong id="statToday">Rp0</strong></div>
+      <div class="stat-box"><span>Total Penjualan</span><strong id="statTotal">Rp0</strong></div>
+      <div class="stat-box"><span>Pesanan Pending</span><strong id="statPending">0</strong></div>
+    </div>
+
+    <div class="chart-section" style="margin-bottom: 30px;">
+      <div class="chart-buttons">
+        <button class="chart-btn active" onclick="changeSalesPeriod('hari_ini', this)">Hari Ini</button>
+        <button class="chart-btn" onclick="changeSalesPeriod('7_hari', this)">7 Hari</button>
+        <button class="chart-btn" onclick="changeSalesPeriod('30_hari', this)">30 Hari</button>
+      </div>
+      <div class="chart-container">
+        <canvas id="salesChartCanvas" width="700" height="250"></canvas>
+      </div>
+    </div>
+
+    <div class="owner-pending">
+      <h3>📥 Antrean Pesanan (ACC)</h3>
+      <div id="pendingOrders" style="margin-top:10px"></div>
+    </div>
+
+    <div class="owner-history" style="margin-top:30px">
+      <h3>📜 Riwayat Transaksi</h3>
+      <div id="salesHistoryList" style="margin-top:10px"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

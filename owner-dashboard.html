@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Owner | KelapaTuaBangCut</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="padding: 40px;">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+      <h1>🔐 Dashboard Owner</h1>
+      <button class="btn btn-outline" onclick="logout()">Keluar</button>
+    </div>
+    
+    <div class="chart-section">
+      <h3>Grafik Penjualan</h3>
+      <div class="chart-buttons">
+        <button class="chart-btn active" onclick="changeSalesPeriod('hari_ini', this)">Hari Ini</button>
+        <button class="chart-btn" onclick="changeSalesPeriod('7_hari', this)">7 Hari Terakhir</button>
+        <button class="chart-btn" onclick="changeSalesPeriod('30_hari', this)">30 Hari Terakhir</button>
+        <button class="chart-btn" onclick="changeSalesPeriod('1_tahun', this)">1 Tahun Terakhir</button>
+      </div>
+      <div class="chart-container">
+        <canvas id="salesChartCanvas" width="700" height="300"></canvas>
+        <div class="chart-total" id="chartTotal"></div>
+      </div>
+    </div>
+    
+    <div class="owner-pending" id="ownerPendingList">
+      <h3>Pesanan Pending</h3>
+      <div id="pendingOrders"></div>
+    </div>
+    
+    <div class="owner-history" style="margin-top:30px">
+      <h3>Riwayat Penjualan</h3>
+      <div id="salesHistoryList"></div>
+    </div>
+  </div>
+  <script src="script-owner.js"></script>
+</body>
+</html>
