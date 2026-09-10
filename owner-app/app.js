@@ -12,7 +12,7 @@ function touchSession(){ if(isSessionValid()) sessionStorage.setItem("ownerSessi
 
 if (!isSessionValid()) { alert("Khusus Owner! Silakan login dulu."); window.location.href="../index.html"; }
 
-const API_BASE = "http://localhost:3000";
+const API_BASE = "https://storesantan.vercel.app/";
 
 function formatPrice(p){ return new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(p); }
 

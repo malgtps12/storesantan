@@ -118,7 +118,7 @@ const proofImage = document.getElementById("proofImage");
 const proofName = document.getElementById("proofName");
 const removeProofBtn = document.getElementById("removeProof");
 
-const API_BASE = "http://localhost:3000";
+const API_BASE = "https://storesantan.vercel.app/";
 
 let ownerLoggedIn = isSessionValid();
 let proofData = null;

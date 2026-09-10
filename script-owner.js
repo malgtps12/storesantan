@@ -16,7 +16,7 @@ if (!isSessionValid()) { alert("Silakan login terlebih dahulu!"); window.locatio
 function formatPrice(price){ return new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(price); }
 function formatShort(value){ if(value>=1000000) return `Rp${Math.round(value/1000000)}jt`; if(value>=1000) return `Rp${Math.round(value/1000)}k`; return formatPrice(value); }
 
-const API_BASE = "http://localhost:3000";
+const API_BASE = "https://storesantan.vercel.app/";
 
 async function fetchOrders(){
   const res = await fetch(`${API_BASE}/api/orders`,{ headers:{ Authorization:`Bearer ${token()}` }});
