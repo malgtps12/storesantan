@@ -216,10 +216,10 @@
       </div>
 
       <div class="cart-captcha" id="captchaSection">
-        <label class="upload-label">🧩 Puzzle Verifikasi</label>
-        <p style="font-size: 11px; margin: 4px 0 8px;" id="puzzleInstruction">Pilih gambar: ...</p>
-        <div class="puzzle-options" id="puzzleOptions"></div>
-        <input type="hidden" id="humanToken" />
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+          <input type="checkbox" id="humanCheck" /> Saya bukan robot
+          <input type="hidden" id="humanToken" />
+        </label>
       </div>
 
       <div class="cart-payment" id="cartPayment">

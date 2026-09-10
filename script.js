@@ -215,40 +215,20 @@ function showOrderList(items, total, proof) {
   orderModal.classList.add("active");
 }
 
-const puzzleInstruction = document.getElementById("puzzleInstruction");
-const puzzleOptions = document.getElementById("puzzleOptions");
+const humanCheck = document.getElementById("humanCheck");
 const humanToken = document.getElementById("humanToken");
-let puzzleId = "";
-let puzzleOpts = [];
 
-async function refreshPuzzle() {
-  const res = await fetch(`${API_BASE}/api/captcha`);
-  const data = await res.json();
-  puzzleId = data.id;
-  puzzleOpts = data.options;
-  puzzleInstruction.textContent = `Pilih gambar: ${data.targetName}`;
-  puzzleOptions.innerHTML = data.options.map((emoji, idx) => 
-    `<button class="puzzle-opt" onclick="verifyPuzzle(${idx})">${emoji}</button>`
-  ).join("");
-  humanToken.value = "";
-}
-
-window.verifyPuzzle = async function(idx) {
-  const res = await fetch(`${API_BASE}/api/captcha/verify`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id: puzzleId, choiceIndex: idx, options: puzzleOpts })
+humanCheck.addEventListener("change", async ()=>{
+  if(!humanCheck.checked) return;
+  const res = await fetch(`${API_BASE}/api/captcha/verify`,{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({checked:true})
   });
   const data = await res.json();
-  if (data.ok) {
-    humanToken.value = data.humanToken;
-    showToast("Puzzle benar! Silakan checkout");
-    puzzleInstruction.textContent = "✅ Terverifikasi - Silakan checkout";
-  } else {
-    showToast(data.error || "Puzzle salah");
-    refreshPuzzle();
-  }
-};
+  if(data.ok) { humanToken.value=data.humanToken; showToast("Terverifikasi"); }
+  else { humanToken.value=""; humanCheck.checked=false; showToast(data.error); }
+});
 
 function simulateQRISDetection() {
   if (cart.length === 0) return showToast("Keranjang kosong");
@@ -278,7 +258,6 @@ function simulateQRISDetection() {
       qrisPayButton.disabled = false;
       proofData = null; proofFile.value = ""; proofPreview.style.display = "none";
       humanToken.value = "";
-      refreshPuzzle();
       showToast("Bukti terkirim — menunggu ACC Owner");
       closeCartSidebar();
     })
@@ -288,7 +267,6 @@ function simulateQRISDetection() {
       showToast(e.message);
     });
 }
-refreshPuzzle();
 
 function checkoutViaWhatsApp() {
   const history = JSON.parse(localStorage.getItem("salesHistory") || "[]");
